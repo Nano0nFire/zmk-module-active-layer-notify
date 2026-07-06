@@ -1,0 +1,5 @@
+# Nanopb options file for active_layer_notify.proto
+# This defines max sizes for string fields
+
+nano0nfire.active_layer_notify.ActiveLayerInfo.name    max_size:64
+nano0nfire.active_layer_notify.ErrorResponse.message   max_size:64

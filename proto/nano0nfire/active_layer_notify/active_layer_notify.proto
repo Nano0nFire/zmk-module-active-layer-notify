@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package nano0nfire.active_layer_notify;
+
+message ActiveLayerInfo {
+    uint32 index = 1;
+    uint32 id = 2;
+    string name = 3;
+}
+
+message GetActiveLayerRequest {}
+
+message GetActiveLayerResponse { ActiveLayerInfo layer = 1; }
+
+message ActiveLayerChangedNotification {
+    ActiveLayerInfo layer = 1;
+    uint32 changed_layer_id = 2;
+    bool state = 3;
+}
+
+message Request {
+    oneof request_type { GetActiveLayerRequest get_active_layer = 1; }
+}
+
+message ErrorResponse { string message = 1; }
+
+message Response {
+    oneof response_type {
+        ErrorResponse error = 1;
+        GetActiveLayerResponse get_active_layer = 2;
+    }
+}
+
+message Notification {
+    oneof notification_type { ActiveLayerChangedNotification active_layer_changed = 1; }
+}

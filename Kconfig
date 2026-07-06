@@ -1,0 +1,10 @@
+config ZMK_ACTIVE_LAYER_NOTIFY
+    bool "Enable active_layer_notify feature"
+
+if ZMK_ACTIVE_LAYER_NOTIFY
+
+config ZMK_ACTIVE_LAYER_NOTIFY_STUDIO_RPC
+    bool "Enable active_layer_notify feature custom Studio RPC"
+    depends on ZMK_STUDIO
+
+endif
