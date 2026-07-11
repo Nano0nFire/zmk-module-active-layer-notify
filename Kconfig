@@ -8,3 +8,14 @@ config ZMK_ACTIVE_LAYER_NOTIFY_STUDIO_RPC
     depends on ZMK_STUDIO
 
 endif
+
+config ZMK_INPUT_STREAM
+    bool "Enable input event stream feature"
+
+if ZMK_INPUT_STREAM
+
+config ZMK_INPUT_STREAM_STUDIO_RPC
+    bool "Enable input stream custom Studio RPC (key press / layer change notifications)"
+    depends on ZMK_STUDIO
+
+endif

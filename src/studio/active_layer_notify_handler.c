@@ -8,6 +8,8 @@
 #include <zephyr/logging/log.h>
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
+#if IS_ENABLED(CONFIG_ZMK_ACTIVE_LAYER_NOTIFY_STUDIO_RPC)
+
 static struct zmk_rpc_custom_subsystem_meta active_layer_notify_feature_meta = {
     ZMK_RPC_CUSTOM_SUBSYSTEM_UI_URLS("https://github.com/Nano0nFire/zmk-module-active-layer-notify"),
     // Unsecured is suggested by default to avoid unlocking in un-reliable
@@ -83,3 +85,5 @@ static int handle_get_active_layer(const nano0nfire_active_layer_notify_GetActiv
     resp->response_type.get_active_layer = result;
     return 0;
 }
+
+#endif // IS_ENABLED(CONFIG_ZMK_ACTIVE_LAYER_NOTIFY_STUDIO_RPC)

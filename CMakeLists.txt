@@ -1,8 +1,10 @@
 zephyr_include_directories(include)
-if(CONFIG_ZMK_ACTIVE_LAYER_NOTIFY)
+if(CONFIG_ZMK_ACTIVE_LAYER_NOTIFY OR CONFIG_ZMK_INPUT_STREAM)
     # target_sources(app PRIVATE ...)
 
-    if(CONFIG_ZMK_ACTIVE_LAYER_NOTIFY_STUDIO_RPC)
+    # Each src/studio/*.c guards itself with its own CONFIG_..._STUDIO_RPC
+    # #if, so globbing everything here is safe when only one feature is on.
+    if(CONFIG_ZMK_ACTIVE_LAYER_NOTIFY_STUDIO_RPC OR CONFIG_ZMK_INPUT_STREAM_STUDIO_RPC)
         file(GLOB_RECURSE C_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.c)
         target_sources(app PRIVATE ${C_FILES})
 

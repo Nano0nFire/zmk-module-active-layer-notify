@@ -14,6 +14,18 @@ include:
     shield: tester_xiao
     cmake-args: -DCONFIG_ZMK_ACTIVE_LAYER_NOTIFY=y
 
+  - artifact: module_input_stream_board_with_rpc
+    board: xiao_ble//zmk
+    shield: tester_xiao
+    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_INPUT_STREAM=y -DCONFIG_ZMK_INPUT_STREAM_STUDIO_RPC=y
+    snippet: studio-rpc-usb-uart
+
+  - artifact: module_both_features_board_with_rpc
+    board: xiao_ble//zmk
+    shield: tester_xiao
+    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_ACTIVE_LAYER_NOTIFY=y -DCONFIG_ZMK_ACTIVE_LAYER_NOTIFY_STUDIO_RPC=y -DCONFIG_ZMK_INPUT_STREAM=y -DCONFIG_ZMK_INPUT_STREAM_STUDIO_RPC=y
+    snippet: studio-rpc-usb-uart
+
   - artifact: custom_settings_board
     board: xiao_ble//zmk
     shield: tester_xiao
