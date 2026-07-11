@@ -18,12 +18,22 @@ extern bool zmk_input_stream_is_enabled(void);
 
 static bool encode_notification(pb_ostream_t *stream, const pb_field_t *field,
                                 void *const *arg) {
-    ARG_UNUSED(field);
     const zmk_input_stream_Notification *notification =
         (const zmk_input_stream_Notification *)(*arg);
 
-    size_t size = 0;
+    // Bytes-callback fields must write tag + length prefix + payload
+    // themselves; omitting the prefix splices raw payload bytes into the
+    // parent message and the client cannot decode the notification.
+    if (!pb_encode_tag_for_field(stream, field)) {
+        return false;
+    }
+
+    size_t size;
     if (!pb_get_encoded_size(&size, zmk_input_stream_Notification_fields, notification)) {
+        return false;
+    }
+
+    if (!pb_encode_varint(stream, size)) {
         return false;
     }
 
